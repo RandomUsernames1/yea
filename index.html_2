@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Links</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        cursor: none;
+    }
+
+    body {
+        margin: auto;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        overflow: auto;
+        background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+        animation: gradient 15s ease infinite;
+        background-size: 400% 400%;
+        background-attachment: fixed;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        padding-bottom: 100px;
+    }
+
+    @keyframes gradient {
+        0% { background-position: 0% 0%; }
+        50% { background-position: 100% 100%; }
+        100% { background-position: 0% 0%; }
+    }
+
+    .wave {
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 1000% 1000% 0 0;
+        position: fixed;
+        width: 200%;
+        height: 12em;
+        animation: wave 10s -3s linear infinite;
+        opacity: 0.8;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    .wave:nth-of-type(2) { bottom: -1.25em; animation: wave 18s linear reverse infinite; }
+    .wave:nth-of-type(3) { bottom: -2.5em; animation: wave 20s -1s reverse infinite; opacity: 0.9; }
+
+    @keyframes wave {
+        2% { transform: translateX(1); }
+        25% { transform: translateX(-25%); }
+        50% { transform: translateX(-50%); }
+        75% { transform: translateX(-25%); }
+        100% { transform: translateX(1); }
+    }
+
+    @keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0); } }
+
+    .container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 90%;
+        max-width: 400px;
+        padding: 40px 20px;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .title {
+        color: #fff;
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 15px 0;
+        margin: 8px 0;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1.2rem;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.25);
+        transition: transform 0.15s ease, background 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: scale(1.07);
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    .glass-title {
+        padding: 12px 25px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 15px;
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,0.25);
+        box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+        text-align: center;
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #1E90FF;
+        font-family: Arial, sans-serif;
+    }
+
+    .glass-title:hover {
+        transform: scale(1.05);
+        background: rgba(255,255,255,0.18);
+    }
+
+    .cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        pointer-events: none;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        backdrop-filter: blur(8px);
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .scroll-hint {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 8px 20px;
+        font-size: 1rem;
+        color: #fff;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        cursor: pointer;
+        z-index: 999;
+        animation: pulse 1.5s ease-in-out infinite;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    @keyframes pulse {
+        0% { transform: translateX(-50%) scale(1); }
+        50% { transform: translateX(-50%) scale(1.05); }
+        100% { transform: translateX(-50%) scale(1); }
+    }
+
+    .scroll-hint.hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(-50%) scale(0.9);
+    }
+
+    .bottom-btn {
+        position: fixed;
+        bottom: 20px;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        color: #fff;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        cursor: pointer;
+        z-index: 100;
+    }
+
+    /* Bottom section back to solid black */
+    .bottom-section {
+        width: 100%;
+        min-height: 100vh;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: auto;
+        background: #000000;
+    }
+
+    .bottom-section p,
+    .bottom-section ul {
+        color: white;
+        max-width: 900px;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        font-family: Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+
+<!-- Waves -->
+<div class="wave"></div>
+<div class="wave"></div>
+<div class="wave"></div>
+
+<!-- Store Links -->
+<div class="container">
+    <div class="title">Store Links</div>
+
+    <a class="btn" href="https://www.facebook.com/marketplace/" target="_blank">Facebook Marketplace</a>
+    <a class="btn" href="https://www.ebay.com" target="_blank">Ebay</a>
+    <a class="btn" href="https://www.etsy.com" target="_blank">Etsy</a>
+    <a class="btn" href="https://www.gumtree.com" target="_blank">Gumtree</a>
+    <a class="btn" href="https://www.amazon.com" target="_blank">Amazon</a>
+</div>
+
+<!-- Social -->
+<div class="container">
+    <div class="title">Social Media</div>
+
+    <a class="btn" href="https://www.facebook.com" target="_blank">Facebook</a>
+    <a class="btn" href="https://www.instagram.com" target="_blank">Instagram</a>
+    <a class="btn" href="https://www.youtube.com" target="_blank">YouTube</a>
+    <a class="btn" href="https://www.tiktok.com" target="_blank">TikTok</a>
+    <a class="btn" href="https://www.snapchat.com" target="_blank">Snapchat</a>
+    <a class="btn" href="https://www.twitter.com" target="_blank">X / Twitter</a>
+    <a class="btn" href="https://www.pinterest.com" target="_blank">Pinterest</a>
+</div>
+
+<!-- Scroll Hint -->
+<div class="scroll-hint" id="scrollHint">Scroll Down</div>
+
+<!-- Bottom Button -->
+<div class="bottom-btn" id="bottomBtn">“If you’re looking for the number one, most reliable, high-quality, and trustworthy seller, then buy from us.”</div>
+
+<!-- Cursor -->
+<div class="cursor"></div>
+
+<!-- Bottom Section (your description) -->
+<div class="bottom-section">
+
+<h2 class="glass-title">Luxury Features:</h2>
+<ul>
+  <li><strong>Perfect for ALL AGES</strong>, no technical experience required</li>
+  <li><strong>Durable, long-lasting USBs</strong></li>
+  <li>Scratch-resistant and made from high-quality materials</li>
+  <li>Fast read/write speeds for all Linux installations</li>
+  <li>Compatible with <strong>ALL Linux distributions</strong></li>
+  <li>All products are <strong>pre-tested for reliability</strong></li>
+  <li>Ready-to-use—<strong>no stress whatsoever</strong></li>
+  <li>Ultimate care in shipping, <strong>fast and reliable</strong></li>
+  <li>Super-secure packaging to protect your product</li>
+  <li>Established business with a website</li>
+  <li>Available for customized orders for all customers</li>
+  <li>Easy for beginners and professionals alike</li>
+  <li>We are fully determined to give our customers an excellent experience</li>
+  <li>Don’t waste <strong>ANY</strong> time with our ready-to-use bootable drives</li>
+  <li>Great for students, tech enthusiasts, developers, sysadmins, and elderly users</li>
+  <li>Always flexible options for personal or professional use</li>
+</ul>
+
+<p style="color:#FF4500; font-weight:bold; text-align:center;">
+“If you’re looking for the number one, most reliable, high-quality, and trustworthy seller, then buy from us.”
+</p>
+
+<h3 class="glass-title">Notice:</h3>
+<p>Feel free to message us if you have any questions or want a specific Linux distro to be installed.</p>
+<p>(We can install ANY Linux distro you want...)</p>
+
+<h3 class="glass-title">Official Website:</h3>
+<p><a href="https://example.website" target="_blank" style="color:#FF4500;">https://example.website</a></p>
+
+<h3 class="glass-title">Official Email:</h3>
+<p>email@email.com</p>
+
+<h3 class="glass-title">Reasons to use Linux:</h3>
+<ul>
+  <li><strong>Secure</strong> – Linux is much more secure.</li>
+  <li><strong>Lightweight</strong> – Runs great on old computers.</li>
+  <li><strong>Free</strong> – Linux is free and open source.</li>
+  <li><strong>Easy to use</strong> – Beginner friendly.</li>
+</ul>
+
+<h3 class="glass-title">Software Included:</h3>
+<ul>
+  <li>Firefox</li>
+  <li>LibreOffice</li>
+  <li>Thunderbird</li>
+  <li>VLC</li>
+  <li>GIMP & Inkscape</li>
+  <li>VS Code & Vim</li>
+  <li>Steam</li>
+  <li>GParted & Synaptic</li>
+</ul>
+
+<p>Thank you for supporting our business...</p>
+<p>This software distribution complies with GNU guidelines.</p>
+<p>USB design may vary.</p>
+
+</div>
+
+<script>
+    const cursor = document.querySelector('.cursor');
+    const scrollHint = document.getElementById('scrollHint');
+
+    document.addEventListener('mousemove', e => {
+        cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+    });
+
+    scrollHint.addEventListener('click', () => {
+        const startY = window.scrollY;
+        const endY = document.body.scrollHeight - window.innerHeight;
+        const distance = endY - startY;
+        const duration = 4000; // 4 seconds
+        let startTime = null;
+        let userInterrupted = false;
+
+        function onUserScroll() {
+            userInterrupted = true;
+            window.removeEventListener('wheel', onUserScroll);
+            window.removeEventListener('touchmove', onUserScroll);
+        }
+
+        window.addEventListener('wheel', onUserScroll);
+        window.addEventListener('touchmove', onUserScroll);
+
+        function animateScroll(timestamp) {
+            if (userInterrupted) return;
+            if (!startTime) startTime = timestamp;
+            const elapsed = timestamp - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const ease = progress * progress * (3 - 2 * progress);
+            window.scrollTo(0, startY + distance * ease);
+            if (progress < 1) requestAnimationFrame(animateScroll);
+        }
+
+        requestAnimationFrame(animateScroll);
+    });
+
+    function checkScroll() {
+        scrollHint.classList.toggle('hidden', (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 5);
+    }
+
+    window.addEventListener('scroll', checkScroll);
+    checkScroll();
+</script>
+
+</body>
+</html>
