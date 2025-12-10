@@ -3,220 +3,298 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bootable USBs - Next Gen</title>
+<title>My Links</title>
 <style>
-    /* ---------------- GLOBAL STYLES ---------------- */
-    * {margin:0; padding:0; box-sizing:border-box; font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;}
-    body {background:#0f0f0f; color:#fff; overflow-x:hidden; scroll-behavior:smooth; cursor:none;}
-    a {text-decoration:none; color:inherit;}
-    header {width:100%; padding:20px 50px; display:flex; justify-content:space-between; align-items:center; position:fixed; top:0; left:0; background:rgba(15,15,15,0.85); backdrop-filter:blur(5px); z-index:100;}
-    header .logo {font-size:1.5rem; font-weight:700; letter-spacing:2px; padding:6px 12px; border:1px solid #fff; border-radius:6px;}
-    header nav a {margin-left:30px; font-weight:500; transition:color 0.3s;}
-    header nav a:hover {color:#FFD700;}
-    .hero {height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 20px; background:url('https://i.postimg.cc/43gjm9CH/pic.avif') no-repeat center center; background-size:cover; position:relative;}
-    .hero::after {content:''; position:absolute; inset:0; background:rgba(0,0,0,0.6); transition:background 0.3s ease;}
-    body.hovered .hero::after {background:rgba(0,0,0,0.3);}
-    .hero-content {position:relative; z-index:1; max-width:900px;}
-    .hero h1 {font-size:4rem; font-weight:700; margin-bottom:20px; transition:transform 0.2s;}
-    .hero h1:hover {transform:scale(1.03);}
-    .hero p {font-size:1.5rem; line-height:1.5; margin-bottom:40px; transition:transform 0.2s;}
-    .hero p:hover {animation: tiltWiggle 0.4s infinite ease-in-out; transform:scale(1.03);}
-    @keyframes tiltWiggle {0% {transform:scale(1.03) rotate(0deg);}25% {transform:scale(1.03) rotate(2deg);}50% {transform:scale(1.03) rotate(0deg);}75% {transform:scale(1.03) rotate(-2deg);}100% {transform:scale(1.03) rotate(0deg);}}
-    .glass-button {backdrop-filter:blur(12px); background:rgba(255,255,255,0.1); border-radius:30px; padding:20px 60px; border:2px solid rgba(255,255,255,0.25); box-shadow:0 8px 32px rgba(0,0,0,0.3); font-size:1.5rem; font-weight:700; color:#fff; transition:all 0.3s ease; position:relative; overflow:hidden; cursor:pointer;}
-    .glass-button::before {content:''; position:absolute; top:0; left:-75%; width:50%; height:100%; background:linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%); transform:skewX(-20deg);}
-    .glass-button:hover::before {animation: shimmer 1s forwards;}
-    @keyframes shimmer {0% {left:-75%;}100% {left:125%;}}
-    .glass-button:hover {background:rgba(255,255,255,0.25); transform:scale(1.05); box-shadow:0 12px 40px rgba(0,0,0,0.4);}
-    .features {padding:100px 50px; display:flex; flex-wrap:wrap; justify-content:center; gap:50px; background:#0f0f0f;}
-    .feature-card {position:relative; background:rgba(255,255,255,0.05); border-radius:20px; padding:40px; width:300px; text-align:center; backdrop-filter:blur(8px); transition:transform 0.3s, box-shadow 0.3s, background 0.3s; overflow:hidden;}
-    .feature-card::before {content:''; position:absolute; top:0; left:-75%; width:50%; height:100%; background:linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%); transform:skewX(-20deg);}
-    .feature-card.animate-once::before {animation: shimmer 1s forwards;}
-    .feature-card.animate-once {background:rgba(255,255,255,0.15); transform:translateY(-10px); box-shadow:0 12px 30px rgba(0,0,0,0.5);}
-    .feature-card:hover::before {animation: shimmer 1s forwards;}
-    .feature-card:hover {background:rgba(255,255,255,0.15); transform:translateY(-10px); box-shadow:0 12px 30px rgba(0,0,0,0.5);}
-    .feature-card h3 {margin-bottom:20px; font-size:1.5rem;}
-    .feature-card p {font-size:1rem; line-height:1.5; color:#ccc;}
-    .contact {padding:100px 50px; text-align:center; font-size:1.5rem;}
-    footer {text-align:center; padding:20px; background:#0f0f0f; font-size:0.9rem; color:#888;}
-
-    /* ---------------- LIQUID GLASS CURSOR ---------------- */
-    .cursor {position:fixed; top:0; left:0; width:60px; height:60px; border-radius:50%; pointer-events:none; z-index:9999; background:rgba(255,255,255,0.1); backdrop-filter:blur(25px) saturate(250%); border:2px solid rgba(255,255,255,0.3); box-shadow:0 0 15px rgba(255,255,255,0.2), inset 0 0 10px rgba(255,255,255,0.3); transform:translate(-50%, -50%); transition: width 0.2s, height 0.2s, background 0.2s, border 0.2s; mix-blend-mode:screen; will-change:transform; overflow:hidden;}
-    .cursor::before {content:''; position:absolute; top:10%; left:10%; width:80%; height:80%; border-radius:50%; background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), rgba(255,255,255,0) 70%);}
-    .cursor::after {content:''; position:absolute; top:20%; left:20%; width:60%; height:60%; border-radius:50%; background:radial-gradient(circle at 70% 30%, rgba(255,255,255,0.2), rgba(255,255,255,0) 70%);}
-    .cursor.active {width:100px; height:100px; background:rgba(255,255,255,0.2); border-color:rgba(255,255,255,0.5); box-shadow:0 0 25px rgba(255,255,255,0.3), inset 0 0 15px rgba(255,255,255,0.4);}
-
-    /* ---------------- PAGE LOADER ---------------- */
-    .page-loader {position:fixed; bottom:0; left:0; width:100%; height:100%; background:#000; z-index:99999; clip-path:inset(0 0 100% 0); animation:revealUp 1.5s ease forwards;}
-    @keyframes revealUp {0% {clip-path:inset(0 0 100% 0);}100% {clip-path:inset(100% 0 0 0);}}
-
-    /* ---------------- SHOP MODAL ---------------- */
-    .shop-modal {
-        position:fixed;
-        bottom:20px;
-        right:20px;
-        background:rgba(30,30,30,0.95);
-        padding:30px 40px;
-        border-radius:15px;
-        text-align:center;
-        box-shadow:0 10px 40px rgba(0,0,0,0.6);
-        z-index:999;
-        width:300px;
-        transition: all 0.5s ease;
-        overflow:hidden;
-        border: 2px solid rgba(0,255,0,0.5);
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        cursor: none;
     }
-    .shop-modal h2 {margin-bottom:20px; font-size:1.8rem; color:#FFD700; text-decoration:underline;}
-    .shop-modal a {display:block; margin:12px 0; font-size:1.4rem; color:#fff; transition:color 0.2s; position:relative;}
-    .shop-modal:hover {box-shadow: 0 0 30px rgba(0,255,0,0.8), 0 0 50px rgba(0,255,0,0.4) inset; border-color: rgba(255,0,255,0.8);}
-    .shop-modal::before {content:''; position:absolute; top:-2px; left:-2px; width:calc(100% + 4px); height:calc(100% + 4px); border:2px solid limegreen; border-radius:15px; pointer-events:none; background: linear-gradient(90deg, transparent, limegreen, transparent); background-size:200% 100%; animation: borderMove 2s linear infinite; opacity:0; transition: opacity 0.3s;}
-    .shop-modal:hover::before {opacity:1;}
-    @keyframes borderMove {0% {background-position:200% 0;}100% {background-position:-200% 0;}}
 
-    /* ---------------- MARKETING BANNER ---------------- */
-    .marketing-banner {
-        position:fixed;
-        top:0;
-        left:50%;
-        transform:translateX(-50%);
-        background: rgba(255,255,255,0.9);
-        padding:5px 15px;
-        border-radius:20px;
-        font-size:1rem;
-        font-weight:600;
-        color:#000;
-        display:flex;
-        gap:20px;
-        z-index:200;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        overflow:hidden;
-        pointer-events:none;
-        transition: all 0.5s ease;
+    body {
+        margin: auto;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        overflow: auto;
+        background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+        animation: gradient 15s ease infinite;
+        background-size: 400% 400%;
+        background-attachment: fixed;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        padding-bottom: 100px; /* space for bottom button */
     }
-    .marketing-message {white-space: nowrap;}
+
+    @keyframes gradient {
+        0% { background-position: 0% 0%; }
+        50% { background-position: 100% 100%; }
+        100% { background-position: 0% 0%; }
+    }
+
+    .wave {
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 1000% 1000% 0 0;
+        position: fixed;
+        width: 200%;
+        height: 12em;
+        animation: wave 10s -3s linear infinite;
+        transform: translate3d(0, 0, 0);
+        opacity: 0.8;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+    }
+    .wave:nth-of-type(2) {
+        bottom: -1.25em;
+        animation: wave 18s linear reverse infinite;
+        opacity: 0.8;
+    }
+    .wave:nth-of-type(3) {
+        bottom: -2.5em;
+        animation: wave 20s -1s reverse infinite;
+        opacity: 0.9;
+    }
+
+    @keyframes wave {
+        2% { transform: translateX(1); }
+        25% { transform: translateX(-25%); }
+        50% { transform: translateX(-50%); }
+        75% { transform: translateX(-25%); }
+        100% { transform: translateX(1); }
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+        100% { transform: translateY(0); }
+    }
+
+    .container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 90%;
+        max-width: 400px;
+        padding: 40px 20px;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        animation: float 3s ease-in-out infinite;
+        overflow: hidden;
+    }
+
+    .container::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: rotate(45deg) translateX(-150%);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .container:hover::before {
+        animation: sweep 1.2s ease forwards;
+    }
+
+    @keyframes sweep {
+        0% { transform: rotate(45deg) translateX(-150%); opacity: 0; }
+        50% { opacity: 0.4; }
+        100% { transform: rotate(45deg) translateX(150%); opacity: 0; }
+    }
+
+    .title {
+        color: #fff;
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    .btn {
+        width: 100%;
+        padding: 15px 0;
+        margin: 8px 0;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1.2rem;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.25);
+        transition: transform 0.15s ease, background 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: scale(1.07);
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    .cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        pointer-events: none;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        z-index: 1000;
+        transform: translate3d(0, 0, 0);
+        transition: width 0.1s ease, height 0.1s ease, transform 0.05s ease;
+    }
+
+    .scroll-hint {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%) scale(1);
+        padding: 8px 20px;
+        font-size: 1rem;
+        color: #fff;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        text-align: center;
+        animation: pulse 1.5s ease-in-out infinite;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        cursor: pointer;
+        z-index: 999;
+    }
+
+    @keyframes pulse {
+        0% { transform: translateX(-50%) scale(1); }
+        50% { transform: translateX(-50%) scale(1.05); }
+        100% { transform: translateX(-50%) scale(1); }
+    }
+
+    .scroll-hint.hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(-50%) scale(0.9);
+    }
+
+    /* Bottom Click Me Button */
+    .bottom-btn {
+        position: fixed;
+        bottom: 20px;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        color: #fff;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        cursor: pointer;
+        z-index: 100;
+        transition: transform 0.15s ease, background 0.3s ease;
+    }
+
+    .bottom-btn:hover {
+        transform: scale(1.08);
+        background: rgba(255,255,255,0.25);
+    }
+
+    @media (max-width: 480px) {
+        .container { padding: 30px 15px; }
+        .title { font-size: 2rem; }
+        .btn { font-size: 1rem; padding: 12px 0; }
+        .scroll-hint { font-size: 0.9rem; padding: 6px 16px; }
+        .bottom-btn { font-size: 1rem; padding: 12px 24px; }
+    }
 </style>
 </head>
 <body>
 
-<!-- PAGE LOADER -->
-<div class="page-loader"></div>
-
-<header>
-    <div class="logo">Bootable USBs</div>
-    <nav>
-        <a id="featuresBtn">Features</a>
-        <a id="contactBtn">Contact</a>
-    </nav>
-</header>
-
-<!-- MARKETING BANNER -->
-<div class="marketing-banner" id="marketingBanner"></div>
-
-<section class="hero">
-    <div class="hero-content">
-        <h1>Next Generation Bootable USBs.</h1>
-        <p>No tech skills? No problem. Boot up easily.</p>
-        <div class="glass-button" id="shopBtn">Shop Now</div>
-    </div>
-</section>
-
-<section class="features" id="features">
-    <div class="feature-card">
-        <h3>Ultra Fast</h3>
-        <p>Boot your OS in seconds with our high-speed USB drives.</p>
-    </div>
-    <div class="feature-card">
-        <h3>Durable Design</h3>
-        <p>Premium materials built to last, with stylish aesthetics.</p>
-    </div>
-    <div class="feature-card">
-        <h3>Cross-Platform</h3>
-        <p>Compatible with Windows, Linux, and macOS boot environments.</p>
-    </div>
-</section>
-
-<section class="contact" id="contact">
-    <p id="contactText">Contact us at: <strong>example@email.com</strong></p>
-</section>
-
-<footer>
-    &copy; 2025 Bootable USBs. All rights reserved.
-</footer>
-
-<!-- Bottom-Right Shop Modal -->
-<div class="shop-modal" id="shopModal">
-    <h2>Shop Options</h2>
-    <a href="https://www.etsy.com" target="_blank">Etsy</a>
-    <a href="https://www.ebay.com" target="_blank">eBay</a>
-    <a href="https://www.facebook.com" target="_blank">Facebook</a>
+<!-- Waves Background -->
+<div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
 </div>
 
-<!-- Liquid glass cursor -->
+<!-- Store Links Panel -->
+<div class="container">
+    <div class="title">My Store Links</div>
+    <a class="btn" href="YOUR_FACEBOOK_MARKETPLACE_LINK" target="_blank">Facebook Marketplace</a>
+    <a class="btn" href="YOUR_EBAY_LINK" target="_blank">eBay</a>
+    <a class="btn" href="YOUR_ETSY_LINK" target="_blank">Etsy</a>
+    <a class="btn" href="YOUR_GUMTREE_LINK" target="_blank">Gumtree</a>
+    <a class="btn" href="YOUR_AMAZON_LINK" target="_blank">Amazon</a>
+</div>
+
+<!-- Social Media Panel -->
+<div class="container">
+    <div class="title">My Social Media</div>
+    <a class="btn" href="https://www.facebook.com" target="_blank">Facebook</a>
+    <a class="btn" href="https://www.instagram.com" target="_blank">Instagram</a>
+    <a class="btn" href="https://www.youtube.com" target="_blank">YouTube</a>
+    <a class="btn" href="https://www.tiktok.com" target="_blank">TikTok</a>
+    <a class="btn" href="https://www.snapchat.com" target="_blank">Snapchat</a>
+    <a class="btn" href="https://www.twitter.com" target="_blank">X / Twitter</a>
+    <a class="btn" href="https://www.pinterest.com/pin-builder/" target="_blank">Pinterest</a>
+</div>
+
+<!-- Scroll Hint -->
+<div class="scroll-hint" id="scrollHint">Scroll Down</div>
+
+<!-- Bottom Click Me Button -->
+<div class="bottom-btn" id="bottomBtn">Click Me</div>
+
+<!-- Cursor -->
 <div class="cursor"></div>
 
 <script>
-    /* ---------------- PAGE LOADER ---------------- */
-    const loader = document.querySelector('.page-loader');
-    loader.addEventListener('animationend', () => loader.style.display='none');
+    const cursor = document.querySelector('.cursor');
+    const scrollHint = document.getElementById('scrollHint');
+    const bottomBtn = document.getElementById('bottomBtn');
 
-    /* ---------------- BUTTON & NAV INTERACTIONS ---------------- */
-    const button = document.querySelector('.glass-button');
-    button.addEventListener('mouseenter',()=>document.body.classList.add('hovered'));
-    button.addEventListener('mouseleave',()=>document.body.classList.remove('hovered'));
-
-    const featuresBtn = document.getElementById('featuresBtn');
-    const cards = document.querySelectorAll('.feature-card');
-    featuresBtn.addEventListener('click', ()=>{
-        document.getElementById('features').scrollIntoView({behavior:'smooth'});
-        cards.forEach(card=>{card.classList.add('animate-once'); setTimeout(()=>card.classList.remove('animate-once'),1200);});
+    // Custom cursor
+    document.addEventListener('mousemove', e => {
+        cursor.style.transform = `translate3d(${e.clientX - cursor.offsetWidth/2}px, ${e.clientY - cursor.offsetHeight/2}px, 0)`;
     });
 
-    document.getElementById('contactBtn').addEventListener('mouseenter',()=>{
-        const text=document.getElementById('contactText');
-        document.getElementById('contact').scrollIntoView({behavior:'smooth'});
-        text.classList.add('bounce');
-        setTimeout(()=>text.classList.remove('bounce'),600);
-    });
-
-    /* ---------------- LIQUID GLASS CURSOR ---------------- */
-    const cursor=document.querySelector('.cursor');
-    let mouseX=0, mouseY=0, posX=0, posY=0;
-    document.addEventListener('mousemove',e=>{mouseX=e.clientX; mouseY=e.clientY;});
-    function animate(){posX+=(mouseX-posX)*0.15; posY+=(mouseY-posY)*0.15; cursor.style.transform=`translate(${posX}px,${posY}px) translate(-50%,-50%)`; requestAnimationFrame(animate);}
-    animate();
-    const interactive=document.querySelectorAll('a, button, .glass-button');
-    interactive.forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('active')); el.addEventListener('mouseleave',()=>cursor.classList.remove('active'));});
-
-    /* ---------------- SHOP MODAL ---------------- */
-    const shopModal = document.getElementById('shopModal');
-    const shopBtn = document.getElementById('shopBtn');
-    const banner = document.getElementById('marketingBanner');
-    const bannerMessages = ["Almost Sold Out!", "Buy it Quickly!", "Best Rated!", "Top of the Best!"];
-
-    function showBannerMessages() {
-        banner.innerHTML = '';
-        bannerMessages.forEach(msg => {
-            const span = document.createElement('div');
-            span.className = 'marketing-message';
-            span.textContent = msg;
-            banner.appendChild(span);
-        });
+    // Scroll Hint logic
+    function checkScroll() {
+        const scrollBottom = window.innerHeight + window.scrollY;
+        const docHeight = document.documentElement.scrollHeight;
+        if (scrollBottom >= docHeight - 5) {
+            scrollHint.classList.add('hidden');
+        } else {
+            scrollHint.classList.remove('hidden');
+        }
     }
-    showBannerMessages();
+    window.addEventListener('scroll', checkScroll);
+    window.addEventListener('resize', checkScroll);
+    checkScroll();
 
-    shopBtn.addEventListener('click', () => {
-        const btnRect = shopBtn.getBoundingClientRect();
-        const modalRect = shopModal.getBoundingClientRect();
-        const centerX = btnRect.left + btnRect.width/2 - modalRect.width/2;
-        const centerY = btnRect.top + btnRect.height + 10; // just below button
-        shopModal.style.bottom = 'auto';
-        shopModal.style.right = 'auto';
-        shopModal.style.top = `${centerY}px`;
-        shopModal.style.left = `${centerX}px`;
-
-        // Move banner above modal
-        banner.style.top = `${centerY - 40}px`;
+    scrollHint.addEventListener('click', () => {
+        window.scrollBy({top: window.innerHeight, left:0, behavior: 'smooth'});
+        scrollHint.classList.add('hidden');
     });
 
+    // Bottom Button click
+    bottomBtn.addEventListener('click', () => {
+        alert('You clicked the bottom button!');
+    });
 </script>
 
 </body>
