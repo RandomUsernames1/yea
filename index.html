@@ -118,37 +118,33 @@
         background: rgba(255, 255, 255, 0.25);
     }
 
+    /* Tooltip on hover */
+    .btn {
+        position: relative; /* Needed for tooltip positioning */
+    }
 
-/* Tooltip on hover */
-.btn {
-    position: relative; /* Needed for tooltip positioning */
-}
+    .btn::after {
+        content: "Open in new tab";
+        position: absolute;
+        bottom: 120%; /* above the button */
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.75);
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        z-index: 10;
+    }
 
-.btn::after {
-    content: "Open in new tab";
-    position: absolute;
-    bottom: 120%; /* above the button */
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0,0,0,0.75);
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    z-index: 10;
-}
-
-.btn:hover::after {
-    opacity: 1;
-    transform: translateX(-50%) translateY(-5px); /* small pop-up effect */
-}
-
-
-
+    .btn:hover::after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-5px); /* small pop-up effect */
+    }
 
     .glass-title {
         padding: 12px 25px;
@@ -249,7 +245,6 @@
         text-align: center;
     }
 
-    /* Fix bullet spacing */
     .bottom-section ul {
         list-style-position: inside;
         padding-left: 0;
@@ -269,6 +264,24 @@
         font-family: Arial, sans-serif;
         z-index: 5;
     }
+
+    .about-stars {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: gold;
+        font-size: 0.9rem;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        line-height: 1.2rem;
+        z-index: 5;
+    }
+
+    .about-stars .stars-underline {
+        text-decoration: underline;
+        display: inline-block;
+    }
+
 </style>
 </head>
 <body>
@@ -317,6 +330,11 @@
 <div class="bottom-section">
 
     <div class="about-text">About Our Product:</div>
+    <div class="about-stars">
+        <span class="stars-underline">★★★★★</span><br>
+        Star<br>
+        Rating
+    </div>
 
     <h2 class="glass-title">Luxury Features:</h2>
     <ul>
