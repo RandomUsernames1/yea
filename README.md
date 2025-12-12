@@ -34,4 +34,4 @@ Bitcoin: bc1qqxsknanxnhk67wp3lgkzr5v7kk3dmcvxeycw9h
 
 ## email me in detail at:
 
-milahmilah70@outlook.com
+aberiaofficial@outlook.com
